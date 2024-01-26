@@ -1,0 +1,490 @@
+{
+  "name": "@futong.security/3d-piechart",
+  "version": "0.0.11",
+  "dependencies": {
+    "bcore": "0.0.18",
+    "jquery": "2.1.4",
+    "lodash": "4.6.1",
+    "echarts": "4.4.0",
+    "echarts-gl": "1.1.2"
+  },
+  "datav": {
+    "cn_name": "3d-piechart",
+    "icon": "",
+    "protocol": 2,
+    "type": [
+      "regular"
+    ],
+    "view": {
+      "width": "500",
+      "height": "250",
+      "minWidth": "200",
+      "minHeight": "100"
+    },
+    "apis": {
+      "source": {
+        "handler": "render",
+        "description": "接口描述",
+        "fields": {
+          "name": {
+            "description": "类目值"
+          },
+          "value": {
+            "description": "数据值"
+          },
+          "unit": {
+            "description": "单位"
+          },
+          "percent": {
+            "description": "百分比"
+          }
+        }
+      }
+    },
+    "config": {
+      "options": {
+        "name": "菜单",
+        "type": "menu",
+        "children": {
+          "chart": {
+            "name": "图表",
+            "mode": "single",
+            "children": {
+              "transparent": {
+                "type": "stepper",
+                "caption": "透明度",
+                "default": 1,
+                "max": 1,
+                "min": 0,
+                "step": 0.1,
+                "col": 24
+              },
+              "valueLabel": {
+                "name": "数值标签",
+                "type": "group",
+                "enableHide": true,
+                "children": {
+                  "font": {
+                    "name": "文本样式",
+                    "type": "font",
+                    "enableHide": false
+                  },
+                  "unit": {
+                    "name": "单位",
+                    "type": "text",
+                    "default": "元"
+                  }
+                }
+              },
+              "percentLabel": {
+                "name": "百分比标签",
+                "type": "group",
+                "enableHide": true,
+                "children": {
+                  "font": {
+                    "name": "文本样式",
+                    "type": "font",
+                    "enableHide": false
+                  }
+                }
+              },
+              "categoryLabel": {
+                "name": "类目标签",
+                "type": "group",
+                "enableHide": true,
+                "children": {
+                  "font": {
+                    "name": "文本样式",
+                    "type": "font",
+                    "enableHide": false
+                  }
+                }
+              },
+              "LabelLine": {
+                "name": "标签引导线",
+                "type": "group",
+                "enableHide": true,
+                "children": {
+                  "slider1": {
+                    "name": "引导线一",
+                    "type": "slider",
+                    "step": 1,
+                    "suffix": "px"
+                  },
+                  "slider2": {
+                    "name": "引导线二",
+                    "type": "slider",
+                    "step": 1,
+                    "suffix": "px"
+                  },
+                  "color": {
+                    "name": "颜色",
+                    "type": "color"
+                  }
+                }
+              },
+              "legend": {
+                "name": "图例",
+                "type": "group",
+                "enableHide": true,
+                "children": {
+                  "suite": {
+                    "name": "图例标记",
+                    "type": "suite",
+                    "enableHide": false,
+                    "children": {
+                      "type": {
+                        "name": "图例类型",
+                        "type": "select",
+                        "useFont": false,
+                        "default": "scroll",
+                        "col": 12,
+                        "options": [
+                          {
+                            "value": "plain",
+                            "label": "普通图例"
+                          },
+                          {
+                            "value": "scroll",
+                            "label": "可滚动翻页图例"
+                          }
+                        ]
+                      },
+                      "orient": {
+                        "name": "布局朝向",
+                        "type": "select",
+                        "useFont": false,
+                        "default": "vertical",
+                        "col": 12,
+                        "options": [
+                          {
+                            "value": "horizontal",
+                            "label": "水平"
+                          },
+                          {
+                            "value": "vertical",
+                            "label": "垂直"
+                          }
+                        ]
+                      },
+                      "position": {
+                        "name": "图例垂直位置",
+                        "type": "select",
+                        "useFont": false,
+                        "default": "middle",
+                        "col": 12,
+                        "options": [
+                          {
+                            "value": "top",
+                            "label": "top"
+                          },
+                          {
+                            "value": "middle",
+                            "label": "middle"
+                          },
+                          {
+                            "value": "bottom",
+                            "label": "bottom"
+                          }
+                        ]
+                      },
+                      "positionSmall": {
+                        "type": "stepper",
+                        "caption": "垂直位置精调",
+                        "default": 0,
+                        "min": 0,
+                        "step": 1,
+                        "col": 12
+                      },
+                      "position2": {
+                        "name": "图例水平位置",
+                        "type": "select",
+                        "useFont": false,
+                        "default": "right",
+                        "col": 12,
+                        "options": [
+                          {
+                            "value": "left",
+                            "label": "left"
+                          },
+                          {
+                            "value": "center",
+                            "label": "center"
+                          },
+                          {
+                            "value": "right",
+                            "label": "right"
+                          }
+                        ]
+                      },
+                      "position2Small": {
+                        "type": "stepper",
+                        "caption": "垂直位置精调",
+                        "default": 0,
+                        "min": 0,
+                        "step": 1,
+                        "col": 12
+                      },
+                      "icon": {
+                        "name": "图例形状",
+                        "type": "select",
+                        "useFont": false,
+                        "default": "rect",
+                        "col": 12,
+                        "options": [
+                          {
+                            "value": "circle",
+                            "label": "circle"
+                          },
+                          {
+                            "value": "rect",
+                            "label": "rect"
+                          },
+                          {
+                            "value": "roundRect",
+                            "label": "roundRect"
+                          },
+                          {
+                            "value": "triangle",
+                            "label": "triangle"
+                          },
+                          {
+                            "value": "pin",
+                            "label": "pin"
+                          },
+                          {
+                            "value": "arrow",
+                            "label": "arrow"
+                          },
+                          {
+                            "value": "none",
+                            "label": "none"
+                          }
+                        ]
+                      },
+                      "height": {
+                        "type": "stepper",
+                        "caption": "组件高度",
+                        "default": 65,
+                        "max": 100,
+                        "min": 1,
+                        "step": 1,
+                        "col": 12,
+                        "suffix": "%"
+                      },
+                      "width": {
+                        "type": "stepper",
+                        "caption": "组件宽度",
+                        "default": 100,
+                        "max": 100,
+                        "min": 1,
+                        "step": 1,
+                        "col": 12,
+                        "suffix": "%"
+                      },
+                      "itemWidth": {
+                        "type": "stepper",
+                        "caption": "图例标记长度",
+                        "default": 10,
+                        "step": 1,
+                        "col": 12,
+                        "suffix": "px"
+                      },
+                      "itemHeight": {
+                        "type": "stepper",
+                        "caption": "图例标记高度",
+                        "default": 10,
+                        "step": 1,
+                        "col": 12,
+                        "suffix": "px"
+                      },
+                      "itemGap": {
+                        "type": "stepper",
+                        "caption": "每项间隔",
+                        "default": 25,
+                        "step": 1,
+                        "col": 12,
+                        "suffix": "px"
+                      },
+                      "value": {
+                        "type": "switch",
+                        "caption": "值标签",
+                        "default": false,
+                        "col": 12
+                      },
+                      "percent": {
+                        "type": "switch",
+                        "caption": "百分比标签",
+                        "default": false,
+                        "col": 12
+                      }
+                    }
+                  },
+                  "font": {
+                    "name": "文本样式",
+                    "type": "font",
+                    "enableHide": false
+                  }
+                }
+              }
+            }
+          },
+          "coordinate": {
+            "name": "坐标轴",
+            "mode": "multiple",
+            "children": {
+              "ratios": {
+                "name": "图形属性",
+                "children": {
+                  "ratio": {
+                    "name": "内半径",
+                    "type": "slider",
+                    "default": 0,
+                    "step": 0.1,
+                    "max": 0.8,
+                    "min": 0
+                  }
+                }
+              }
+            }
+          },
+          "series": {
+            "name": "系列",
+            "mode": "single",
+            "children": {
+              "tabs": {
+                "name": "数据系列",
+                "type": "tabs",
+                "maxTabs": 10,
+                "template": {
+                  "name": "系列<%= i + 1%>",
+                  "children": {
+                    "seriesColor": {
+                      "name": "面积样式",
+                      "type": "color",
+                      "caption": "填充色"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "others": {
+            "name": "其它",
+            "mode": "single",
+            "children": {
+              "switch": {
+                "name": "开关",
+                "type": "switch"
+              }
+            }
+          }
+        },
+        "default": {
+          "chart": {
+            "valueLabel": {
+              "show": true,
+              "font": {
+                "fontFamily": "Microsoft Yahei",
+                "fontWeight": "normal",
+                "fontSize": 12,
+                "color": "#fff"
+              }
+            },
+            "percentLabel": {
+              "show": true,
+              "font": {
+                "fontFamily": "Microsoft Yahei",
+                "fontWeight": "normal",
+                "fontSize": 12,
+                "color": "#fff"
+              }
+            },
+            "categoryLabel": {
+              "show": true,
+              "font": {
+                "fontFamily": "Microsoft Yahei",
+                "fontWeight": "normal",
+                "fontSize": 12,
+                "color": "#fff"
+              }
+            },
+            "LabelLine": {
+              "show": true,
+              "slider1": 33,
+              "slider2": 20,
+              "color": "#fff"
+            },
+            "legend": {
+              "show": true,
+              "suite": {
+                "itemType": "circle",
+                "itemSize": 12
+              },
+              "font": {
+                "fontFamily": "Microsoft Yahei",
+                "fontWeight": "normal",
+                "fontSize": 12,
+                "color": "#fff"
+              }
+            }
+          },
+          "coordinate": {
+            "ratios": {
+              "ratio": 0
+            }
+          },
+          "series": {
+            "tabs": [
+              {
+                "seriesColor": "#156ee7",
+                "_active": false
+              },
+              {
+                "seriesColor": "#ffee51",
+                "_active": false
+              },
+              {
+                "seriesColor": "#84ff43",
+                "_active": false
+              },
+              {
+                "seriesColor": "#43ffa0",
+                "_active": false
+              },
+              {
+                "seriesColor": "#3de7e1",
+                "_active": true
+              }
+            ]
+          },
+          "others": {
+            "switch": true
+          }
+        }
+      }
+    },
+    "api_data": {
+      "source": [
+        {
+          "cloud_type": "private_ali",
+          "month_income": 82.81,
+          "name": "private_ali",
+          "value": 82.81
+        },
+        {
+          "cloud_type": "vm_cas",
+          "month_income": 14.08,
+          "name": "vm_cas",
+          "value": 14.08
+        },
+        {
+          "cloud_type": "vm_vmware",
+          "month_income": 128.22,
+          "name": "vm_vmware",
+          "value": 128.22
+        }
+      ]
+    }
+  }
+}

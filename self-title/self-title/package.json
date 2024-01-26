@@ -1,0 +1,57 @@
+{
+  "name": "@futong.security/self-title",
+  "version": "0.0.11",
+  "dependencies": {
+    "bcore": "0.0.18",
+    "jquery": "2.1.4",
+    "lodash": "4.6.1",
+    "element-ui": "2.15.14"
+  },
+  "datav": {
+    "cn_name": "自定义标题",
+    "icon": "",
+    "protocol": 2,
+    "type": [
+      "regular"
+    ],
+    "view": {
+      "width": "200",
+      "height": "100",
+      "minWidth": "200",
+      "minHeight": "100"
+    },
+    "apis": {
+      "source": {
+        "handler": "render",
+        "description": "接口描述",
+        "fields": {
+          "value": {
+            "description": "值说明"
+          }
+        }
+      }
+    },
+    "config": {
+      "font": {
+        "name": "文本样式",
+        "type": "font",
+        "enableHide": false
+      },
+      "size": {
+        "type": "stepper",
+        "caption": "垂直位置精调",
+        "default": 0,
+        "min": 0,
+        "step": 1,
+        "col": 12
+      }
+    },
+    "api_data": {
+      "source": [
+        {
+          "value": "我是标题的风格打电话山豆根豆腐干反对高浮雕高浮雕"
+        }
+      ]
+    }
+  }
+}
